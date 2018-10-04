@@ -56,6 +56,26 @@
 		.small-button {
 			font-size: 0.9em;
 		}
+		.page-break {
+			display: none;
+		}
+		.expense, .profit, .actions {
+			text-align: right;
+		}
+		.expense, .profit {
+			font-weight: bold;
+		}
+		.expense { 
+			color: red;
+		}
+		.profit { color: green; }
+		.actions a {
+			font-size: 0.9em;
+			color: white;
+			padding: 2px 5px;
+			background-color: #3B5998;
+			text-decoration: none;
+		}
 		section {
 			border: 1px solid #000;
 			height: 100px;
@@ -104,8 +124,44 @@
 		blockquote::after {
 			content: "\201D";
 		}
+		table {
+			width: 500px;
+		}
+		td {
+			border: 1px dotted #666;
+			padding: 5px;
+		}
+		td a {
+			color: #3B5998;
+		}
 		@media print {
 			/* Este CSS só será aplicado quando a página for impressa */
+			* {
+				background: transparent !important ;
+				border-color: #000 !important ;
+				box-shadow: none !important ;
+				color: #000 !important ;
+				text-shadow: none !important ;
+			}
+			a {
+				text-decoration: underline !important ;
+			}
+			a[href]::after {
+				content: " (" attr(href) ")";
+			}
+			a[href^="javascript:"]::after, a[href^="#"]::after {
+				content: "";
+			}
+			article {
+				page-break-after: always;
+			}
+			p {
+				page-break-inside: avoid;
+			}
+			.page-break {
+				display: block;
+				page-break-before: always;
+			}
 		}
 	</style>
 	<title></title>
@@ -153,7 +209,51 @@
 
 	<a href="#" class='button primary-button big-button'>Enviar mensagem</a>
 	<a href="#" class='button small-button'>Cancelar</a>
-
+	
+	<!-- O atributo "media" indica que estes estilos só devem ser aplicado para impressões -->
 	<link href="print.css" media="print">
+
+	<article>
+		bla bla bla
+	</article>
+	<article>
+		batatinha
+	</article>
+	<div class=".page-break">
+		essa parada de quebrar página na impressão
+	</div>
+	<p>
+		Pellentesque libero tortor, tincidunt et, tincidunt eget, semper nec, quam. Curabitur nisi. In ut quam vitae odio lacinia tincidunt. Vestibulum suscipit nulla quis orci. Nam eget dui.
+
+		Quisque libero metus, condimentum nec, tempor a, commodo mollis, magna.. Duis vel nibh at velit scelerisque suscipit. Donec vitae orci sed dolor rutrum auctor. Praesent adipiscing.
+
+		Donec posuere vulputate arcu. Vestibulum fringilla pede sit amet augue. Vivamus in erat ut urna cursus vestibulum. Fusce convallis metus id felis luctus adipiscing. Nullam dictum felis eu pede mollis pretium.
+
+		Phasellus magna. Cras risus ipsum, faucibus ut, ullamcorper id, varius ac, leo. Donec mollis hendrerit risus. Praesent vestibulum dapibus nibh. In dui magna, posuere eget, vestibulum et, tempor auctor, justo.
+
+		Etiam rhoncus. Donec venenatis vulputate lorem. Proin faucibus arcu quis ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In ac dui quis mi consectetuer lacinia. Aenean ut eros et nisl sagittis vestibulum.
+	</p>
+
+	<h1>Transações de Maio, 2011</h1>
+	<table>
+		<tr>
+			<td>
+				<a href='http://exemplo/transacao/1'>Transação 1</a>
+			</td>
+			<td class='expense'>R$ 100,00</td>
+			<td class='actions'>
+				<a href="http://exemplo/transacao/1/editar">Editar</a>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<a href='http://exemplo/transacao/2'>Transação 2</a>
+			</td>
+			<td class='profit'>R$ 200,00</td>
+			<td class='actions'>
+				<a href="http://exemplo/transacao/2/editar">Editar</a>
+			</td>
+		</tr>
+	</table>
 </body>
 </html>
