@@ -88,6 +88,7 @@
 			width: 400px;
 		}
 		h1 {
+			font-family: "Lobster", cursive;
 			background-color: #990000;
 			color: #FFF;
 			font-size: 1.2em;
@@ -139,6 +140,12 @@
 		td a {
 			color: #3B5998;
 		}
+		@font-face {
+			font-family: "Lobster";
+			font-style: normal;
+			font-weight: 400;
+			src: local('Lobster'), url(/fonts/lobster.woff) format('woff');
+		}
 		@media print {
 			/* Este CSS só será aplicado quando a página for impressa */
 			* {
@@ -157,15 +164,40 @@
 			a[href^="javascript:"]::after, a[href^="#"]::after {
 				content: "";
 			}
+			a::after {
+				content: "(" attr(href) ")";
+				margin-left: 2px;
+			}
 			article {
 				page-break-after: always;
 			}
 			p {
 				page-break-inside: avoid;
 			}
+			table {
+				width: 100%;
+			}
+			td {
+				border-color: #000;
+			}
 			.page-break {
 				display: block;
 				page-break-before: always;
+			}
+			.actions {
+				display: none;
+			}
+			.expense::before {
+				content: "- ";
+			}
+			.expense::after {
+				content: " - Despesa";
+			}
+			.profit::before {
+				content: "+ ";
+			}
+			.profit::after {
+				content: " - Receita";
 			}
 		}
 	</style>
